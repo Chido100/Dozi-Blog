@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="card-body mt-4">
+    <h1>{{ post.title }}</h1>
+    <p class="date fw-lighter">
+        Published {{ post.publish }} by {{ post.author }}
+    </p>
+    {{ post.body|linebreaks }}
+</div>
+{% endblock %}
