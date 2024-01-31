@@ -17,6 +17,9 @@
 
     {{ post.body|linebreaks }}
     
+    <p>
+        <a href="{% url 'main:post-share' post.id %}">Share this post</a>
+    </p>
     <p class="date fw-lighter">Published {{ post.publish }} by {{ post.author }}</p>
 </div>
 {% endblock %}
