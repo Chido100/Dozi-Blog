@@ -5,9 +5,18 @@
 {% block content %}
 <div class="card-body mt-4">
     <h1>{{ post.title }}</h1>
-    <p class="date fw-lighter">
-        Published {{ post.publish }} by {{ post.author }}
-    </p>
+    
+
+    {% if post.image %}
+        <img src="{{ post.post_image.url }}" style="width:200px; height:200px;">
+    {% else %}
+        <div class="card-img-top bg-secondary text-white text-center py-3">
+            No Image Available
+        </div>
+    {% endif %}
+
     {{ post.body|linebreaks }}
+    
+    <p class="date fw-lighter">Published {{ post.publish }} by {{ post.author }}</p>
 </div>
 {% endblock %}
