@@ -10,7 +10,12 @@
                     <h5 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
                     
                     
-                    <img src="{{ post.post_image.url }}" style="width:100px; height:100px;">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" style="width: 150px; height: 100px;">
+                    {% else %}
+                        <!-- Handle the case when there is no image -->
+                        <p>No image available</p>
+                    {% endif %}
                     
                     
                     {{ post.body|truncatewords:30|linebreaks }}

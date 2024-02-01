@@ -1,19 +1,20 @@
 {% extends 'main/base.html' %}
 
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
 <div class="card-body mt-4">
-    <h1>{{ post.title }}</h1>
+    <h2>{{ post.title }}</h2>
     
-
+    
     {% if post.image %}
-        <img src="{{ post.post_image.url }}" style="width:200px; height:200px;">
+        <img src="{{ post.image.url }}" style="width:600px; height:400px;">
     {% else %}
-        <div class="card-img-top bg-secondary text-white text-center py-3">
+        <div class="card-img-top bg-secondary text-white text-center py-3" style="width:600px; height: 400px;">
             No Image Available
         </div>
     {% endif %}
+    
 
     {{ post.body|linebreaks }}
     
@@ -22,4 +23,4 @@
     </p>
     <p class="date fw-lighter">Published {{ post.publish }} by {{ post.author }}</p>
 </div>
-{% endblock %}
+{% endblock content %}
