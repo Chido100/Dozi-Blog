@@ -10,17 +10,35 @@
     {% if post.image %}
         <img src="{{ post.image.url }}" style="width:600px; height:400px;">
     {% else %}
-        <div class="card-img-top bg-secondary text-white text-center py-3" style="width:600px; height: 400px;">
+        <div class="card-img-top bg-light text-secondary text-center py-3" style="width:600px; height: 400px;">
             No Image Available
         </div>
     {% endif %}
     
 
     {{ post.body|linebreaks }}
+    <p class="date fw-lighter">Published {{ post.publish }} by {{ post.author }}</p>
     
     <p>
         <a href="{% url 'main:post-share' post.id %}">Share this post</a>
     </p>
-    <p class="date fw-lighter">Published {{ post.publish }} by {{ post.author }}</p>
+    {% with comments.count as total_comments %}
+        <h2>
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+    {% for comment in comments %}
+        <div class="comment bg-light">
+            <p class="info">
+                {{ comment.name }} - 
+                {{ comment.created }}
+            </p>
+            {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+            <p>There are no comments.</p>
+        {% endfor %}
+        {% include "main/post/includes/comment_form.html" %}
+    
 </div>
 {% endblock content %}
