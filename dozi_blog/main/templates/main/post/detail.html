@@ -3,21 +3,19 @@
 {% block title %}{{ post.title }}{% endblock title %}
 
 {% block content %}
-<div class="card-body mt-4">
-    <h2>{{ post.title }}</h2>
-    
-    
+<div class="card-body mt-4 container">
     {% if post.image %}
-        <img src="{{ post.image.url }}" style="width:600px; height:400px;">
+        <img src="{{ post.image.url }}" class="img-fluid">
     {% else %}
         <div class="card-img-top bg-light text-secondary text-center py-3" style="width:600px; height: 400px;">
             No Image Available
         </div>
     {% endif %}
     
+    <h2 class="mt-4 text-center">{{ post.title }}</h2>
 
     {{ post.body|linebreaks }}
-    <p class="date fw-lighter">Published {{ post.publish }} by {{ post.author }}</p>
+    <p class="date fw-lighter">Published {{ post.publish|date:"j F, Y" }} by {{ post.author }}</p>
     
     <p>
         <a href="{% url 'main:post-share' post.id %}">Share this post</a>
@@ -31,7 +29,7 @@
         <div class="comment bg-light">
             <p class="info">
                 {{ comment.name }} - 
-                {{ comment.created }}
+                {{ comment.created|date:"j F, Y" }}
             </p>
             {{ comment.body|linebreaks }}
         </div>
